@@ -15,7 +15,7 @@ var FormStep2 = React.createClass({
     return (
       <div>
         <label htmlFor="email">Email:</label>
-        <input type="text" name="email" id="email" defaultValue="me@gmail.com" onChange={this.props.change} />
+        <input type="text" name="email" id="email" defaultValue={this.state.data.user.email} onChange={this.props.change} />
       </div>
     )
   }

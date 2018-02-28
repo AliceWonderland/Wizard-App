@@ -13,20 +13,20 @@ var Form = React.createClass({
   getInitialState: function(){
     return {
 			data: {
-        value: 'selected',
+        value: 'select',
         currentStep: 1,
         user: {
           id: 1,
-          firstName: 'First',
-          lastName: 'Last',
+          firstName: 'Alice',
+          lastName: 'Palace',
           email: 'alice@gmail.com',
-          age: 'select',
+          age: '17 and under',
           heightFt: 5,
           heightIn: 4,
           weight: 150,
-          color: 'select'
+          color: 'Red'
         },
-        errors: 0
+        error: ''
       }
 		}
   },
@@ -37,27 +37,33 @@ var Form = React.createClass({
     //using validator in base form to save time
 
 		let currentStep=this.state.data.currentStep;
-		let error=this.state.error;
+		let errors=this.state.data.errors;
 
 		if(currentStep===1){
 			// letters/nums
 			var reg = /^[0-9a-zA-Z]+$/;
       var isValidFirst = reg.test(this.state.data.user.firstName);
-      var isValidLast = reg.test(this.state.data.user.firstLast);
+      var isValidLast = reg.test(this.state.data.user.lastName);
 
 			if(!isValidFirst || !isValidLast){
-        console.log('no')
+        console.log('no');
+        var error="Please enter a valid name";
+        this.setState({data: {...this.state.data, error}});
+        return false;
 			}
 
 		}else if(currentStep===2){
 			// blank,@,dot
-			// use RFC822 email regex
+			// use RFC822 email regex*
 
 			var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 			var isValidEmail = reg.test(this.state.data.user.email);
 
       if(!isValidEmail){
-        console.log('no')
+        console.log('no');
+        var error="Please enter a valid email";
+        this.setState({data: {...this.state.data, error}});
+        return false;
       }
 
 		}else if(currentStep===3){
@@ -70,31 +76,33 @@ var Form = React.createClass({
       var isValidAge=!(this.state.data.user.age==='select');
 
       if(!isValidHeightFt || !isValidHeightIn || !isValidWeight || !isValidAge){
-        console.log('no')
+        console.log('no');
+        var field='';
+        if(!isValidAge){
+          field='age';
+        }else if(!isValidHeightFt || !isValidHeightIn){
+          field='height';
+        }else{
+          field='weight';
+        }
+        var error="Please enter a valid " + field;
+
+        this.setState({data: {...this.state.data, error}});
+        return false;
       }
       
 		}else if(currentStep==4){
 			// not 'select', handle other
-      var isValidColor=!(this.state.data.user.color==='select');
-
-      if(!isValidColor){
-        console.log('no')
+      if(this.state.data.user.color==='select' || this.state.data.user.color==='Other'){
+        console.log('no');
+        return false;
       }
 		}else{
 			// success
-  		console.log('success')
+  		console.log('success');
 		}
 
-    // let value = this.state.value;
-    // if (value === 'car') {
-    //   this.props.next(states.CAR);
-    // } else if (value === 'boat') {
-    //   this.props.next(states.BOAT);
-    // } else {
-    //   // this.setState({
-    //   //   errors: ['Please choose a vehicle type']
-    //   // });
-    // }
+    return true;
   },
 
   handleClick: function(e){
@@ -112,14 +120,17 @@ var Form = React.createClass({
 
 		}else if(e.target.value==='Next'){
 
-    	this.validate();
+    	console.log('chcek',this.validate());
 
-			if(currentStep < 5){
-        currentStep++;
-			}else{
-        currentStep = 5;
+			if(this.validate()){
+        if(currentStep < 5){
+          currentStep++;
+        }else{
+          currentStep = 5;
+        }
+        var error="";
+        this.setState({data: {...this.state.data, ...{currentStep,error}}});
 			}
-			this.setState({data: {...this.state.data, currentStep}});
 
 		}else{
 
@@ -138,7 +149,7 @@ var Form = React.createClass({
 		return (
 			<div className="content form-wizard">
 				<h1>Step {data.currentStep}</h1>
-
+				<h4>{this.state.data.error}</h4>
 				<form action="post">
 					<FormStep1 data={data} change={(e) => this.handleChange(e)} />
 					<FormStep2 data={data} change={(e) => this.handleChange(e)} />

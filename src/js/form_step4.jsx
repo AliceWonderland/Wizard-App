@@ -3,6 +3,11 @@
 var React = require('react');
 
 var FormStep4 = React.createClass({
+  getInitialState: function(){
+    return {
+      data: this.props.data
+    }
+  },
 
   render: function () {
     if (this.props.data.currentStep !== 4) {
@@ -11,8 +16,8 @@ var FormStep4 = React.createClass({
     return (
       <div>
         <label htmlFor="color">Favorite Color:</label>
-        <select name="color" id="color" defaultValue={this.props.data.value}>
-          <option value="selected">Select Color</option>
+        <select name="color" id="color" defaultValue={this.state.data.user.color}>
+          <option value="select">Select Color</option>
           <option value="Red">Red</option>
           <option value="Orange">Orange</option>
           <option value="Yellow">Yellow</option>
@@ -22,7 +27,7 @@ var FormStep4 = React.createClass({
           <option value="Other">Other</option>
         </select>
 
-        <input type="text" name="color" id="color" defaultValue="color" onChange={this.props.change} />
+        <input type="text" name="color" id="color" defaultValue={this.state.data.user.color} onChange={this.props.change} />
       </div>
     )
   }
