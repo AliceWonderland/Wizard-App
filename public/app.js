@@ -108616,13 +108616,13 @@
 	/** @jsx React.DOM *//** @jsx React.DOM */
 
 	var React = __webpack_require__(2);
-	var FormStep1 = __webpack_require__(1235);
-	var FormStep2 = __webpack_require__(1236);
-	var FormStep3 = __webpack_require__(1237);
-	var FormStep4 = __webpack_require__(1238);
-	var FormStep5 = __webpack_require__(1239);
+	var FormStep1 = __webpack_require__(1233);
+	var FormStep2 = __webpack_require__(1234);
+	var FormStep3 = __webpack_require__(1235);
+	var FormStep4 = __webpack_require__(1236);
+	var FormStep5 = __webpack_require__(1237);
 
-	__webpack_require__(1233);
+	__webpack_require__(1238);
 
 	var Form = React.createClass({displayName: "Form",
 	  getInitialState: function(){
@@ -108671,12 +108671,10 @@
 			}else if(currentStep===2){
 				// blank,@,dot
 				// use RFC822 email regex*
-
 				var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 				var isValidEmail = reg.test(this.state.data.user.email);
 
 	      if(!isValidEmail){
-	        console.log('no');
 	        var error="Please enter a valid email. Must contain @ and .";
 	        this.setState({data: Object.assign({},this.state.data, {error:error})});
 	        return false;
@@ -108684,7 +108682,6 @@
 
 			}else if(currentStep===3){
 				// not 'select',int
-
 				var reg = /^[0-9]*$/;
 	      var isValidHeightFt = reg.test(this.state.data.user.heightFt);
 	      var isValidHeightIn = reg.test(this.state.data.user.heightIn);
@@ -108692,7 +108689,6 @@
 	      var isValidAge=!(this.state.data.user.age==='select');
 
 	      if(!isValidHeightFt || !isValidHeightIn || !isValidWeight || !isValidAge){
-	        console.log('no');
 	        var field='';
 	        if(!isValidAge){
 	          field='age';
@@ -108710,7 +108706,6 @@
 				// not 'select', handle other
 	      if(this.state.data.user.color==='select' ||
 	        (this.state.data.user.color==='Other' && this.state.data.user.colorOther==='')){
-	        console.log('no');
 
 	        var error="Please enter a valid color";
 	        this.setState({data: Object.assign({},this.state.data, {error:error})});
@@ -108720,7 +108715,6 @@
 				// success
 	  		console.log('success');
 			}
-
 	    return true;
 	  },
 
@@ -108748,7 +108742,6 @@
 	        var error="";
 	        this.setState({data: Object.assign({},this.state.data, {currentStep:currentStep,error:error})});
 				}
-
 			}else{
 
 			}
@@ -108788,13 +108781,6 @@
 
 /***/ }),
 /* 1233 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 1234 */,
-/* 1235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM *//** @jsx React.DOM */
@@ -108828,7 +108814,7 @@
 
 
 /***/ }),
-/* 1236 */
+/* 1234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM *//** @jsx React.DOM */
@@ -108858,7 +108844,7 @@
 
 
 /***/ }),
-/* 1237 */
+/* 1235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM *//** @jsx React.DOM */
@@ -108905,7 +108891,7 @@
 
 
 /***/ }),
-/* 1238 */
+/* 1236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM *//** @jsx React.DOM */
@@ -108942,8 +108928,6 @@
 	          this.props.data.user.color==='Other' &&
 	          React.createElement("input", {type: "text", name: "colorOther", id: "colorOther", defaultValue: this.props.data.user.colorOther, onChange: this.props.change})
 	        
-	        
-
 	      )
 	    )
 	  }
@@ -108953,7 +108937,7 @@
 
 
 /***/ }),
-/* 1239 */
+/* 1237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM *//** @jsx React.DOM */
@@ -108961,7 +108945,6 @@
 	var React = __webpack_require__(2);
 
 	var FormStep5 = React.createClass({displayName: "FormStep5",
-
 	  render: function () {
 	    if (this.props.data.currentStep !== 5) {
 	      return null;
@@ -108978,6 +108961,13 @@
 
 
 /***/ }),
+/* 1238 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 1239 */,
 /* 1240 */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -32,8 +32,6 @@ var FormStep4 = React.createClass({
           this.props.data.user.color==='Other' &&
           <input type="text" name="colorOther" id="colorOther" defaultValue={this.props.data.user.colorOther} onChange={this.props.change} />
         }
-        
-
       </div>
     )
   }

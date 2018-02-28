@@ -22,6 +22,8 @@ browse to wizard-app folder
 
 `npm run start-dev`
 
+Browse to http://localhost:2018/ to view
+
 
 ## Notes
 Used a boilerplate for quick-start. Kept the convention, dir structure, etc... because it was easier but also as an exercise in adhering to coding style.

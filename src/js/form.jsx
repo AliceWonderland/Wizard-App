@@ -56,12 +56,10 @@ var Form = React.createClass({
 		}else if(currentStep===2){
 			// blank,@,dot
 			// use RFC822 email regex*
-
 			var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 			var isValidEmail = reg.test(this.state.data.user.email);
 
       if(!isValidEmail){
-        console.log('no');
         var error="Please enter a valid email. Must contain @ and .";
         this.setState({data: {...this.state.data, error}});
         return false;
@@ -69,7 +67,6 @@ var Form = React.createClass({
 
 		}else if(currentStep===3){
 			// not 'select',int
-
 			var reg = /^[0-9]*$/;
       var isValidHeightFt = reg.test(this.state.data.user.heightFt);
       var isValidHeightIn = reg.test(this.state.data.user.heightIn);
@@ -77,7 +74,6 @@ var Form = React.createClass({
       var isValidAge=!(this.state.data.user.age==='select');
 
       if(!isValidHeightFt || !isValidHeightIn || !isValidWeight || !isValidAge){
-        console.log('no');
         var field='';
         if(!isValidAge){
           field='age';
@@ -95,7 +91,6 @@ var Form = React.createClass({
 			// not 'select', handle other
       if(this.state.data.user.color==='select' ||
         (this.state.data.user.color==='Other' && this.state.data.user.colorOther==='')){
-        console.log('no');
 
         var error="Please enter a valid color";
         this.setState({data: {...this.state.data, error}});
@@ -105,7 +100,6 @@ var Form = React.createClass({
 			// success
   		console.log('success');
 		}
-
     return true;
   },
 
@@ -133,7 +127,6 @@ var Form = React.createClass({
         var error="";
         this.setState({data: {...this.state.data, ...{currentStep,error}}});
 			}
-
 		}else{
 
 		}
