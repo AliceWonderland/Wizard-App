@@ -1,0 +1,7 @@
+{
+  "users": [
+
+    {"id":1, "firstName":"Alice", "lastName":"Chuang", "email":"me@email.com", "age":"str range", "height":5.2, "weight":150, "color":"red"}
+
+  ]
+}

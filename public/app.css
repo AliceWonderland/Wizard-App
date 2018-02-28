@@ -1331,3 +1331,11 @@ html {
     padding: 0 1rem; }
     .header-menu a.active {
       color: #fff; }
+.form-wizard h1 {
+  color: red; }
+
+.form-wizard form {
+  font-family: arial, helvetica, sans-serif;
+  color: red; }
+  .form-wizard form label {
+    color: red; }

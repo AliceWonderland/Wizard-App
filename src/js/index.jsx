@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var _ReactRouter = require('react-router');
 var Users = require('./user.jsx');
 var About = require('./about.jsx');
+var Form = require('./form.jsx');
 
 var Router = _ReactRouter.Router;
 var Route = _ReactRouter.Route;
@@ -23,7 +24,9 @@ var MainLayout = React.createClass({
       <div className="app">
         <header className="header">
           <nav className="header-menu">
+              <h1>Wizard App</h1>
             <Link to="/" activeClassName="active">Home</Link>
+            <Link to="/sample" activeClassName="active">Sample</Link>
             <Link to="/about" activeClassName="active">About</Link>
           </nav>
         </header>
@@ -38,7 +41,8 @@ var MainLayout = React.createClass({
 ReactDOM.render((
   <Router history={browserHistory} >
     <Route path="/" component={MainLayout}>
-      <IndexRoute component={Users} />
+      <IndexRoute component={Form} />
+      <Route path="sample" component={Users} />
       <Route path="about" component={About} />
     </Route>
   </Router>
