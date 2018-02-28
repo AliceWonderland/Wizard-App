@@ -1,11 +1,13 @@
 # Wizard App
-React Simple Form Wizard with Validation
+React Simple Form Wizard with Validation and writes to JSON file.
 
 
 Uses:
-JSON Server https://github.com/typicode/json-server to update json data file.
-SASS
-Webpack
+* JSON Server 
+https://github.com/typicode/json-server 
+to update json data file.
+* SASS
+* Webpack
 
 
 ## Notes
@@ -17,10 +19,7 @@ https://github.com/nickjazz/webpack-react-json-server
 Decided on this approach as a guideline for organizing the components - https://medium.com/@l_e/writing-a-wizard-in-react-8dafbce6db07
 
 
-
-## simple webpack+react+json-server demo
-
-### Main tools
+#### Boilerplate Main tools
 * eslint
 * json-server
 * sass
@@ -31,20 +30,3 @@ Decided on this approach as a guideline for organizing the components - https://
 * react
 * react-router
 * LiveReload
-
-About
-====================
-![demo](http://i.imgur.com/Nw2ecNG.png)
-
-- Use json-server as CRUD api server. work perfectly with Postman.
-- faker and lodash create a random data we need to test.
-- webpack everything for web browser (sass, react, eslint check), output two files, app.js & app.css
-- React do everything on front end, included react-router do all router control.
-- Add and Destroy user.
-- Destroy action just a mock-action, need destroy actual data on server by ajax call.
-
-Usage
-====================
-* npm install
-* node server.js
-* webpack --watch for dev

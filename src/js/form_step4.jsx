@@ -16,7 +16,7 @@ var FormStep4 = React.createClass({
     return (
       <div>
         <label htmlFor="color">Favorite Color:</label>
-        <select name="color" id="color" defaultValue={this.state.data.user.color}>
+        <select name="color" id="color" defaultValue={this.props.data.user.color} onChange={this.props.change}>
           <option value="select">Select Color</option>
           <option value="Red">Red</option>
           <option value="Orange">Orange</option>
@@ -26,8 +26,14 @@ var FormStep4 = React.createClass({
           <option value="Purple">Purple</option>
           <option value="Other">Other</option>
         </select>
+        <br />
 
-        <input type="text" name="color" id="color" defaultValue={this.state.data.user.color} onChange={this.props.change} />
+        {
+          this.props.data.user.color==='Other' &&
+          <input type="text" name="colorOther" id="colorOther" defaultValue={this.props.data.user.colorOther} onChange={this.props.change} />
+        }
+        
+
       </div>
     )
   }

@@ -108639,7 +108639,8 @@
 	          heightFt: 5,
 	          heightIn: 4,
 	          weight: 150,
-	          color: 'Red'
+	          color: 'Red',
+						colorOther:''
 	        },
 	        error: ''
 	      }
@@ -108656,13 +108657,13 @@
 
 			if(currentStep===1){
 				// letters/nums
-				var reg = /^[0-9a-zA-Z]+$/;
+				var reg = /^[a-zA-Z]+$/;
 	      var isValidFirst = reg.test(this.state.data.user.firstName);
 	      var isValidLast = reg.test(this.state.data.user.lastName);
 
 				if(!isValidFirst || !isValidLast){
 	        console.log('no');
-	        var error="Please enter a valid name";
+	        var error="Please enter a valid name. Name can only contain A-Z.";
 	        this.setState({data: Object.assign({},this.state.data, {error:error})});
 	        return false;
 				}
@@ -108676,7 +108677,7 @@
 
 	      if(!isValidEmail){
 	        console.log('no');
-	        var error="Please enter a valid email";
+	        var error="Please enter a valid email. Must contain @ and .";
 	        this.setState({data: Object.assign({},this.state.data, {error:error})});
 	        return false;
 	      }
@@ -108696,20 +108697,23 @@
 	        if(!isValidAge){
 	          field='age';
 	        }else if(!isValidHeightFt || !isValidHeightIn){
-	          field='height';
+	          field='height. Can only contain integers.';
 	        }else{
-	          field='weight';
+	          field='weight. Can only contain integers.';
 	        }
 	        var error="Please enter a valid " + field;
-
 	        this.setState({data: Object.assign({},this.state.data, {error:error})});
 	        return false;
 	      }
 	      
 			}else if(currentStep==4){
 				// not 'select', handle other
-	      if(this.state.data.user.color==='select' || this.state.data.user.color==='Other'){
+	      if(this.state.data.user.color==='select' ||
+	        (this.state.data.user.color==='Other' && this.state.data.user.colorOther==='')){
 	        console.log('no');
+
+	        var error="Please enter a valid color";
+	        this.setState({data: Object.assign({},this.state.data, {error:error})});
 	        return false;
 	      }
 			}else{
@@ -108734,8 +108738,6 @@
 	      this.setState({data: Object.assign({},this.state.data, {currentStep:currentStep})});
 
 			}else if(e.target.value==='Next'){
-
-	    	console.log('chcek',this.validate());
 
 				if(this.validate()){
 	        if(currentStep < 5){
@@ -108812,10 +108814,10 @@
 	    return (
 	      React.createElement("div", null, 
 	          React.createElement("label", {htmlFor: "firstname"}, "First Name:"), 
-	          React.createElement("input", {type: "text", name: "firstName", id: "firstName", defaultValue: this.state.data.user.firstName, onChange: this.props.change}), 
-
+	          React.createElement("input", {type: "text", name: "firstName", id: "firstName", defaultValue: this.props.data.user.firstName, onChange: this.props.change}), 
+	          React.createElement("br", null), 
 	          React.createElement("label", {htmlFor: "lastname"}, "Last Name:"), 
-	          React.createElement("input", {type: "text", name: "lastName", id: "lastName", defaultValue: this.state.data.user.lastName, onChange: this.props.change})
+	          React.createElement("input", {type: "text", name: "lastName", id: "lastName", defaultValue: this.props.data.user.lastName, onChange: this.props.change})
 	      )
 	    )
 	  }
@@ -108846,7 +108848,7 @@
 	    return (
 	      React.createElement("div", null, 
 	        React.createElement("label", {htmlFor: "email"}, "Email:"), 
-	        React.createElement("input", {type: "text", name: "email", id: "email", defaultValue: this.state.data.user.email, onChange: this.props.change})
+	        React.createElement("input", {type: "text", name: "email", id: "email", defaultValue: this.props.data.user.email, onChange: this.props.change})
 	      )
 	    )
 	  }
@@ -108877,7 +108879,7 @@
 	    return (
 	      React.createElement("div", null, 
 	        React.createElement("label", {htmlFor: "age"}, "Age:"), 
-	        React.createElement("select", {name: "age", id: "age", defaultValue: this.state.data.user.age}, 
+	        React.createElement("select", {name: "age", id: "age", defaultValue: this.props.data.user.age, onChange: this.props.change}, 
 	          React.createElement("option", {value: "select"}, "Select Age Range"), 
 	          React.createElement("option", {value: "17 and under"}, "17 and Under"), 
 	          React.createElement("option", {value: "18-24"}, "18-24"), 
@@ -108885,12 +108887,12 @@
 	          React.createElement("option", {value: "36-45"}, "36-45"), 
 	          React.createElement("option", {value: "36 or older"}, "36 or older")
 	        ), 
-
+	        React.createElement("br", null), 
 	        React.createElement("label", {htmlFor: "height"}, "Height:"), 
-	        React.createElement("input", {type: "text", name: "heightFt", id: "heightFt", defaultValue: this.state.data.user.heightFt, onChange: this.props.change}), " ", React.createElement("input", {type: "text", name: "heightIn", id: "heightIn", defaultValue: this.state.data.user.heightIn, onChange: this.props.change}), 
-
+	        React.createElement("input", {type: "text", name: "heightFt", id: "heightFt", defaultValue: this.props.data.user.heightFt, onChange: this.props.change}), " ", React.createElement("input", {type: "text", name: "heightIn", id: "heightIn", defaultValue: this.props.data.user.heightIn, onChange: this.props.change}), 
+	        React.createElement("br", null), 
 	        React.createElement("label", {htmlFor: "weight"}, "Weight:"), 
-	        React.createElement("input", {type: "text", name: "weight", id: "weight", defaultValue: this.state.data.user.weight, onChange: this.props.change})
+	        React.createElement("input", {type: "text", name: "weight", id: "weight", defaultValue: this.props.data.user.weight, onChange: this.props.change})
 	      )
 	    )
 	  }
@@ -108921,7 +108923,7 @@
 	    return (
 	      React.createElement("div", null, 
 	        React.createElement("label", {htmlFor: "color"}, "Favorite Color:"), 
-	        React.createElement("select", {name: "color", id: "color", defaultValue: this.state.data.user.color}, 
+	        React.createElement("select", {name: "color", id: "color", defaultValue: this.props.data.user.color, onChange: this.props.change}, 
 	          React.createElement("option", {value: "select"}, "Select Color"), 
 	          React.createElement("option", {value: "Red"}, "Red"), 
 	          React.createElement("option", {value: "Orange"}, "Orange"), 
@@ -108931,8 +108933,14 @@
 	          React.createElement("option", {value: "Purple"}, "Purple"), 
 	          React.createElement("option", {value: "Other"}, "Other")
 	        ), 
+	        React.createElement("br", null), 
 
-	        React.createElement("input", {type: "text", name: "color", id: "color", defaultValue: this.state.data.user.color, onChange: this.props.change})
+	        
+	          this.props.data.user.color==='Other' &&
+	          React.createElement("input", {type: "text", name: "colorOther", id: "colorOther", defaultValue: this.props.data.user.colorOther, onChange: this.props.change})
+	        
+	        
+
 	      )
 	    )
 	  }

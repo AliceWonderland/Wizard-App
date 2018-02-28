@@ -24,7 +24,8 @@ var Form = React.createClass({
           heightFt: 5,
           heightIn: 4,
           weight: 150,
-          color: 'Red'
+          color: 'Red',
+					colorOther:''
         },
         error: ''
       }
@@ -41,13 +42,13 @@ var Form = React.createClass({
 
 		if(currentStep===1){
 			// letters/nums
-			var reg = /^[0-9a-zA-Z]+$/;
+			var reg = /^[a-zA-Z]+$/;
       var isValidFirst = reg.test(this.state.data.user.firstName);
       var isValidLast = reg.test(this.state.data.user.lastName);
 
 			if(!isValidFirst || !isValidLast){
         console.log('no');
-        var error="Please enter a valid name";
+        var error="Please enter a valid name. Name can only contain A-Z.";
         this.setState({data: {...this.state.data, error}});
         return false;
 			}
@@ -61,7 +62,7 @@ var Form = React.createClass({
 
       if(!isValidEmail){
         console.log('no');
-        var error="Please enter a valid email";
+        var error="Please enter a valid email. Must contain @ and .";
         this.setState({data: {...this.state.data, error}});
         return false;
       }
@@ -81,20 +82,23 @@ var Form = React.createClass({
         if(!isValidAge){
           field='age';
         }else if(!isValidHeightFt || !isValidHeightIn){
-          field='height';
+          field='height. Can only contain integers.';
         }else{
-          field='weight';
+          field='weight. Can only contain integers.';
         }
         var error="Please enter a valid " + field;
-
         this.setState({data: {...this.state.data, error}});
         return false;
       }
       
 		}else if(currentStep==4){
 			// not 'select', handle other
-      if(this.state.data.user.color==='select' || this.state.data.user.color==='Other'){
+      if(this.state.data.user.color==='select' ||
+        (this.state.data.user.color==='Other' && this.state.data.user.colorOther==='')){
         console.log('no');
+
+        var error="Please enter a valid color";
+        this.setState({data: {...this.state.data, error}});
         return false;
       }
 		}else{
@@ -119,8 +123,6 @@ var Form = React.createClass({
       this.setState({data: {...this.state.data, currentStep}});
 
 		}else if(e.target.value==='Next'){
-
-    	console.log('chcek',this.validate());
 
 			if(this.validate()){
         if(currentStep < 5){

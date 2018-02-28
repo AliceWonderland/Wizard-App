@@ -16,7 +16,7 @@ var FormStep3 = React.createClass({
     return (
       <div>
         <label htmlFor="age">Age:</label>
-        <select name="age" id="age" defaultValue={this.state.data.user.age}>
+        <select name="age" id="age" defaultValue={this.props.data.user.age} onChange={this.props.change}>
           <option value="select">Select Age Range</option>
           <option value="17 and under">17 and Under</option>
           <option value="18-24">18-24</option>
@@ -24,12 +24,12 @@ var FormStep3 = React.createClass({
           <option value="36-45">36-45</option>
           <option value="36 or older">36 or older</option>
         </select>
-
+        <br />
         <label htmlFor="height">Height:</label>
-        <input type="text" name="heightFt" id="heightFt" defaultValue={this.state.data.user.heightFt} onChange={this.props.change} /> <input type="text" name="heightIn" id="heightIn" defaultValue={this.state.data.user.heightIn} onChange={this.props.change} />
-
+        <input type="text" name="heightFt" id="heightFt" defaultValue={this.props.data.user.heightFt} onChange={this.props.change} /> <input type="text" name="heightIn" id="heightIn" defaultValue={this.props.data.user.heightIn} onChange={this.props.change} />
+        <br />
         <label htmlFor="weight">Weight:</label>
-        <input type="text" name="weight" id="weight" defaultValue={this.state.data.user.weight} onChange={this.props.change} />
+        <input type="text" name="weight" id="weight" defaultValue={this.props.data.user.weight} onChange={this.props.change} />
       </div>
     )
   }

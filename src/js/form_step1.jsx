@@ -15,10 +15,10 @@ var FormStep1 = React.createClass({
     return (
       <div>
           <label htmlFor="firstname">First Name:</label>
-          <input type="text" name="firstName" id="firstName" defaultValue={this.state.data.user.firstName} onChange={this.props.change} />
-
+          <input type="text" name="firstName" id="firstName" defaultValue={this.props.data.user.firstName} onChange={this.props.change} />
+          <br />
           <label htmlFor="lastname">Last Name:</label>
-          <input type="text" name="lastName" id="lastName" defaultValue={this.state.data.user.lastName} onChange={this.props.change} />
+          <input type="text" name="lastName" id="lastName" defaultValue={this.props.data.user.lastName} onChange={this.props.change} />
       </div>
     )
   }
