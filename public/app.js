@@ -108635,11 +108635,11 @@
 	          firstName: 'First',
 	          lastName: 'Last',
 	          email: 'alice@gmail.com',
-	          age: 32,
+	          age: 'select',
 	          heightFt: 5,
 	          heightIn: 4,
 	          weight: 150,
-	          color: 'red'
+	          color: 'select'
 	        },
 	        errors: 0
 	      }
@@ -108651,27 +108651,48 @@
 	    //do not validate on prev btn
 	    //using validator in base form to save time
 
-			let currentStep=this.state.currentStep;
+			let currentStep=this.state.data.currentStep;
 			let error=this.state.error;
 
 			if(currentStep===1){
-				// blank and str
-				if(this.state.data.user.firstName==='' || this.state.data.user.lastName===''){
+				// letters/nums
+				var reg = /^[0-9a-zA-Z]+$/;
+	      var isValidFirst = reg.test(this.state.data.user.firstName);
+	      var isValidLast = reg.test(this.state.data.user.firstLast);
+
+				if(!isValidFirst || !isValidLast){
 	        console.log('no')
 				}
+
 			}else if(currentStep===2){
 				// blank,@,dot
-	      if(this.state.data.user.email===''){
+				// use RFC822 email regex
+
+				var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+				var isValidEmail = reg.test(this.state.data.user.email);
+
+	      if(!isValidEmail){
 	        console.log('no')
 	      }
+
 			}else if(currentStep===3){
 				// not 'select',int
-	      if(this.state.data.user.email===''){
+
+				var reg = /^[0-9]*$/;
+	      var isValidHeightFt = reg.test(this.state.data.user.heightFt);
+	      var isValidHeightIn = reg.test(this.state.data.user.heightIn);
+	      var isValidWeight = reg.test(this.state.data.user.weight);
+	      var isValidAge=!(this.state.data.user.age==='select');
+
+	      if(!isValidHeightFt || !isValidHeightIn || !isValidWeight || !isValidAge){
 	        console.log('no')
 	      }
+	      
 			}else if(currentStep==4){
 				// not 'select', handle other
-	      if(this.state.data.user.email===''){
+	      var isValidColor=!(this.state.data.user.color==='select');
+
+	      if(!isValidColor){
 	        console.log('no')
 	      }
 			}else{
@@ -108850,7 +108871,7 @@
 	        ), 
 
 	        React.createElement("label", {htmlFor: "height"}, "Height:"), 
-	        React.createElement("input", {type: "text", name: "feet", id: "feet"}), " ", React.createElement("input", {type: "text", name: "inches", id: "inches", onChange: this.props.change}), 
+	        React.createElement("input", {type: "text", name: "heightFt", id: "heightFt", onChange: this.props.change}), " ", React.createElement("input", {type: "text", name: "heightIn", id: "heightIn", onChange: this.props.change}), 
 
 	        React.createElement("label", {htmlFor: "weight"}, "Weight:"), 
 	        React.createElement("input", {type: "text", name: "weight", id: "weight", onChange: this.props.change})
