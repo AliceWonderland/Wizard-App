@@ -9,6 +9,17 @@ to update json data file.
 * SASS
 * Webpack
 
+## Installation
+From terminal
+
+`git clone https://github.com/AliceWonderland/Wizard-App.git`
+
+browse to wizard-app folder
+
+`npm install` 
+
+`npm run start-dev`
+
 
 ## Notes
 Used a boilerplate for quick-start. Kept the convention, dir structure, etc... because it was easier but also as an exercise in adhering to coding style.
