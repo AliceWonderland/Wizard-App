@@ -8,13 +8,13 @@ SASS
 Webpack
 
 
+## Notes
+Used a boilerplate for quick-start. Kept the convention, dir structure, etc... because it was easier but also as an exercise in adhering to coding style.
 
 Based on webpack+react+json-server Boilerplate by 
 https://github.com/nickjazz/webpack-react-json-server
 
-
-## Notes
-Decided on this approach for organizing the components - https://medium.com/@l_e/writing-a-wizard-in-react-8dafbce6db07
+Decided on this approach as a guideline for organizing the components - https://medium.com/@l_e/writing-a-wizard-in-react-8dafbce6db07
 
 
 

@@ -11,6 +11,8 @@ var IndexRoute = _ReactRouter.IndexRoute;
 var Link = _ReactRouter.Link;
 var browserHistory = _ReactRouter.browserHistory;
 
+var validate = require("validate.js");
+
 require("css/libs/normalize.css");
 
 require("css/modules/_init");
