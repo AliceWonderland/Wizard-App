@@ -13,6 +13,9 @@ Based on webpack+react+json-server Boilerplate by
 https://github.com/nickjazz/webpack-react-json-server
 
 
+## Notes
+Decided on this approach for organizing the components - https://medium.com/@l_e/writing-a-wizard-in-react-8dafbce6db07
+
 
 
 ## simple webpack+react+json-server demo

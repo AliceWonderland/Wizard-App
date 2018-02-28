@@ -108615,11 +108615,45 @@
 
 	var React = __webpack_require__(2);
 
+	var FormStep1 = __webpack_require__(1235);
+	var FormStep2 = __webpack_require__(1236);
+	var FormStep3 = __webpack_require__(1237);
+	var FormStep4 = __webpack_require__(1238);
+	var FormStep5 = __webpack_require__(1239);
+
 	__webpack_require__(1233);
 
 	var Form = React.createClass({displayName: "Form",
-	  getInitialState: function() {
-	    return {data: [{value: 'selected'}]}
+	  getInitialState: function(){
+	    return {
+		  data: {
+			value: 'selected',
+			currentStep: 1,
+			user: {
+				id: 1,
+				firstName: 'alice',
+				lastName: 'chuang',
+				email: 'alice@gmail.com',
+				age: 'alice',
+				heightFt: 5,
+				heightIn: 4,
+				weight: 150,
+				color: 'red'
+			}
+		  }
+		}
+	  },
+
+	  handleClick: function(e){
+	    e.preventDefault();
+	    console.log(e.target.value);
+	    if(e.target.value==='Prev'){
+
+		}else if(e.target.value==='Next'){
+
+		}else{
+
+		}
 	  },
 
 	  render: function () {
@@ -108627,45 +108661,53 @@
 			React.createElement("div", {className: "content form-wizard"}, 
 				React.createElement("h1", null, "Step 1"), 
 				React.createElement("form", {action: "post"}, 
-					React.createElement("label", {htmlFor: "firstname"}, "First Name:"), 
-					React.createElement("input", {type: "text", name: "firstname", id: "firstname"}), 
 
-					React.createElement("label", {htmlFor: "lastname"}, "Last Name:"), 
-					React.createElement("input", {type: "text", name: "lastname", id: "lastname"}), 
+					React.createElement(FormStep1, {data: this.state.data}), 
+					React.createElement(FormStep2, {data: this.state.data}), 
+					React.createElement(FormStep3, {data: this.state.data}), 
+					React.createElement(FormStep4, {data: this.state.data}), 
+					React.createElement(FormStep5, {data: this.state.data}), 
 
-					React.createElement("label", {htmlFor: "email"}, "Email:"), 
-					React.createElement("input", {type: "text", name: "email", id: "email"}), 
+					/*<label htmlFor="firstname">First Name:</label>*/
+					/*<input type="text" name="firstname" id="firstname" />*/
 
-					React.createElement("label", {htmlFor: "age"}, "Age:"), 
-					React.createElement("select", {name: "age", id: "age", value: this.state.data.value}, 
-						React.createElement("option", {value: "selected"}, "Select Age Range"), 
-						React.createElement("option", {value: "17 and under"}, "17 and Under"), 
-						React.createElement("option", {value: "18-24"}, "18-24"), 
-						React.createElement("option", {value: "25-35"}, "25-35"), 
-						React.createElement("option", {value: "36-45"}, "36-45"), 
-						React.createElement("option", {value: "36 or older"}, "36 or older")
-					), 
+					/*<label htmlFor="lastname">Last Name:</label>*/
+					/*<input type="text" name="lastname" id="lastname" />*/
 
-					React.createElement("label", {htmlFor: "height"}, "Height:"), 
-					React.createElement("input", {type: "text", name: "feet", id: "feet"}), " ", React.createElement("input", {type: "text", name: "inches", id: "inches"}), 
+					/*<label htmlFor="email">Email:</label>*/
+					/*<input type="text" name="email" id="email" />*/
 
-					React.createElement("label", {htmlFor: "weight"}, "Weight:"), 
-					React.createElement("input", {type: "text", name: "weight", id: "weight"}), 
+					/*<label htmlFor="age">Age:</label>*/
+					/*<select name="age" id="age" value={this.state.data.value}>*/
+						/*<option value="selected">Select Age Range</option>*/
+						/*<option value="17 and under">17 and Under</option>*/
+						/*<option value="18-24">18-24</option>*/
+						/*<option value="25-35">25-35</option>*/
+						/*<option value="36-45">36-45</option>*/
+						/*<option value="36 or older">36 or older</option>*/
+					/*</select>*/
 
-					React.createElement("label", {htmlFor: "color"}, "Favorite Color:"), 
-					React.createElement("select", {name: "color", id: "color", value: this.state.data.value}, 
-						React.createElement("option", {value: "selected"}, "Select Color"), 
-						React.createElement("option", {value: "Red"}, "Red"), 
-						React.createElement("option", {value: "Orange"}, "Orange"), 
-						React.createElement("option", {value: "Yellow"}, "Yellow"), 
-						React.createElement("option", {value: "Green"}, "Green"), 
-						React.createElement("option", {value: "Blue"}, "Blue"), 
-						React.createElement("option", {value: "Purple"}, "Purple"), 
-						React.createElement("option", {value: "Other"}, "Other")
-					)
+					/*<label htmlFor="height">Height:</label>*/
+					/*<input type="text" name="feet" id="feet" /> <input type="text" name="inches" id="inches" />*/
 
-					/*<input type="text" name="color" id="color" />*/
+					/*<label htmlFor="weight">Weight:</label>*/
+					/*<input type="text" name="weight" id="weight" />*/
 
+					/*<label htmlFor="color">Favorite Color:</label>*/
+					/*<select name="color" id="color" value={this.state.data.value}>*/
+						/*<option value="selected">Select Color</option>*/
+						/*<option value="Red">Red</option>*/
+						/*<option value="Orange">Orange</option>*/
+						/*<option value="Yellow">Yellow</option>*/
+						/*<option value="Green">Green</option>*/
+						/*<option value="Blue">Blue</option>*/
+						/*<option value="Purple">Purple</option>*/
+						/*<option value="Other">Other</option>*/
+					/*</select>*/
+
+
+					React.createElement("input", {type: "button", value: "Prev", onClick: function(e)  {return this.handleClick(e);}.bind(this)}), 
+					React.createElement("input", {type: "button", value: "Next", onClick: function(e)  {return this.handleClick(e);}.bind(this)})
 				)
 			)
 		)
@@ -108680,6 +108722,164 @@
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 1234 */,
+/* 1235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM *//** @jsx React.DOM */
+
+	var React = __webpack_require__(2);
+
+	var FormStep1 = React.createClass({displayName: "FormStep1",
+
+	  render: function () {
+	    if (this.props.data.currentStep !== 1) {
+	      return null;
+	    }
+	    return (
+	      React.createElement("div", null, 
+	          React.createElement("label", {htmlFor: "firstname"}, "First Name:"), 
+	          React.createElement("input", {type: "text", name: "firstname", id: "firstname", defaultValue: "First"}), 
+
+	          React.createElement("label", {htmlFor: "lastname"}, "Last Name:"), 
+	          React.createElement("input", {type: "text", name: "lastname", id: "lastname", defaultValue: "Last"})
+	      )
+	    )
+	  }
+
+	})
+
+	module.exports = FormStep1;
+
+
+/***/ }),
+/* 1236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM *//** @jsx React.DOM */
+
+	var React = __webpack_require__(2);
+
+	var FormStep2 = React.createClass({displayName: "FormStep2",
+
+	  render: function () {
+	    if (this.props.data.currentStep !== 2) {
+	      return null;
+	    }
+	    return (
+	      React.createElement("div", null, 
+	        React.createElement("label", {htmlFor: "email"}, "Email:"), 
+	        React.createElement("input", {type: "text", name: "email", id: "email", defaultValue: "me@gmail.com"})
+	      )
+	    )
+	  }
+	})
+
+	module.exports = FormStep2;
+
+
+/***/ }),
+/* 1237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM *//** @jsx React.DOM */
+
+	var React = __webpack_require__(2);
+
+	var FormStep3 = React.createClass({displayName: "FormStep3",
+
+	  render: function () {
+	    if (this.props.data.currentStep !== 3) {
+	      return null;
+	    }
+	    return (
+	      React.createElement("div", null, 
+	        React.createElement("label", {htmlFor: "age"}, "Age:"), 
+	        React.createElement("select", {name: "age", id: "age", defaultValue: this.props.data.value}, 
+	          React.createElement("option", {value: "selected"}, "Select Age Range"), 
+	          React.createElement("option", {value: "17 and under"}, "17 and Under"), 
+	          React.createElement("option", {value: "18-24"}, "18-24"), 
+	          React.createElement("option", {value: "25-35"}, "25-35"), 
+	          React.createElement("option", {value: "36-45"}, "36-45"), 
+	          React.createElement("option", {value: "36 or older"}, "36 or older")
+	        ), 
+
+	        React.createElement("label", {htmlFor: "height"}, "Height:"), 
+	        React.createElement("input", {type: "text", name: "feet", id: "feet"}), " ", React.createElement("input", {type: "text", name: "inches", id: "inches"}), 
+
+	        React.createElement("label", {htmlFor: "weight"}, "Weight:"), 
+	        React.createElement("input", {type: "text", name: "weight", id: "weight"})
+	      )
+	    )
+	  }
+	})
+
+	module.exports = FormStep3;
+
+
+/***/ }),
+/* 1238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM *//** @jsx React.DOM */
+
+	var React = __webpack_require__(2);
+
+	var FormStep4 = React.createClass({displayName: "FormStep4",
+
+	  render: function () {
+	    if (this.props.data.currentStep !== 4) {
+	      return null;
+	    }
+	    return (
+	      React.createElement("div", null, 
+	        React.createElement("label", {htmlFor: "color"}, "Favorite Color:"), 
+	        React.createElement("select", {name: "color", id: "color", defaultValue: this.props.data.value}, 
+	          React.createElement("option", {value: "selected"}, "Select Color"), 
+	          React.createElement("option", {value: "Red"}, "Red"), 
+	          React.createElement("option", {value: "Orange"}, "Orange"), 
+	          React.createElement("option", {value: "Yellow"}, "Yellow"), 
+	          React.createElement("option", {value: "Green"}, "Green"), 
+	          React.createElement("option", {value: "Blue"}, "Blue"), 
+	          React.createElement("option", {value: "Purple"}, "Purple"), 
+	          React.createElement("option", {value: "Other"}, "Other")
+	        ), 
+
+	        React.createElement("input", {type: "text", name: "color", id: "color", defaultValue: "color"})
+	      )
+	    )
+	  }
+	})
+
+	module.exports = FormStep4;
+
+
+/***/ }),
+/* 1239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM *//** @jsx React.DOM */
+
+	var React = __webpack_require__(2);
+
+	var FormStep5 = React.createClass({displayName: "FormStep5",
+
+	  render: function () {
+	    if (this.props.data.currentStep !== 5) {
+	      return null;
+	    }
+	    return (
+	      React.createElement("div", null, 
+	        React.createElement("p", null, "confirm or error")
+	      )
+	    )
+	  }
+	})
+
+	module.exports = FormStep5;
+
 
 /***/ })
 /******/ ]);
