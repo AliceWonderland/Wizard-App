@@ -108888,8 +108888,11 @@
 	          React.createElement("option", {value: "36 or older"}, "36 or older")
 	        ), 
 	        React.createElement("br", null), 
-	        React.createElement("label", {htmlFor: "height"}, "Height:"), 
-	        React.createElement("input", {type: "text", name: "heightFt", id: "heightFt", defaultValue: this.props.data.user.heightFt, onChange: this.props.change}), " ", React.createElement("input", {type: "text", name: "heightIn", id: "heightIn", defaultValue: this.props.data.user.heightIn, onChange: this.props.change}), 
+	        React.createElement("label", {htmlFor: "height"}, "Height (ft):"), 
+	        React.createElement("input", {type: "text", name: "heightFt", id: "heightFt", defaultValue: this.props.data.user.heightFt, onChange: this.props.change}), 
+	        React.createElement("br", null), 
+	        React.createElement("label", {htmlFor: "height"}, "Height (in):"), 
+	        React.createElement("input", {type: "text", name: "heightIn", id: "heightIn", defaultValue: this.props.data.user.heightIn, onChange: this.props.change}), 
 	        React.createElement("br", null), 
 	        React.createElement("label", {htmlFor: "weight"}, "Weight:"), 
 	        React.createElement("input", {type: "text", name: "weight", id: "weight", defaultValue: this.props.data.user.weight, onChange: this.props.change})

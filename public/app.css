@@ -1336,6 +1336,8 @@ html {
 
 .form-wizard form {
   font-family: arial, helvetica, sans-serif; }
+  .form-wizard form label {
+    margin-right: 10px; }
   .form-wizard form input[type="button"] {
     margin-top: 30px; }
   .form-wizard form div {

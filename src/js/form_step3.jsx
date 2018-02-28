@@ -25,8 +25,11 @@ var FormStep3 = React.createClass({
           <option value="36 or older">36 or older</option>
         </select>
         <br />
-        <label htmlFor="height">Height:</label>
-        <input type="text" name="heightFt" id="heightFt" defaultValue={this.props.data.user.heightFt} onChange={this.props.change} /> <input type="text" name="heightIn" id="heightIn" defaultValue={this.props.data.user.heightIn} onChange={this.props.change} />
+        <label htmlFor="height">Height (ft):</label>
+        <input type="text" name="heightFt" id="heightFt" defaultValue={this.props.data.user.heightFt} onChange={this.props.change} />
+        <br />
+        <label htmlFor="height">Height (in):</label>
+        <input type="text" name="heightIn" id="heightIn" defaultValue={this.props.data.user.heightIn} onChange={this.props.change} />
         <br />
         <label htmlFor="weight">Weight:</label>
         <input type="text" name="weight" id="weight" defaultValue={this.props.data.user.weight} onChange={this.props.change} />
