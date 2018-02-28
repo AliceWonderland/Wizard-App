@@ -17,17 +17,63 @@ var Form = React.createClass({
         currentStep: 1,
         user: {
           id: 1,
-          firstName: 'alice',
-          lastName: 'chuang',
+          firstName: 'First',
+          lastName: 'Last',
           email: 'alice@gmail.com',
-          age: 'alice',
+          age: 32,
           heightFt: 5,
           heightIn: 4,
           weight: 150,
           color: 'red'
-        }
+        },
+        errors: 0
       }
 		}
+  },
+
+  validate: function(){
+    //use next btn to validate
+    //do not validate on prev btn
+    //using validator in base form to save time
+
+		let currentStep=this.state.currentStep;
+		let error=this.state.error;
+
+		if(currentStep===1){
+			// blank and str
+			if(this.state.data.user.firstName==='' || this.state.data.user.lastName===''){
+        console.log('no')
+			}
+		}else if(currentStep===2){
+			// blank,@,dot
+      if(this.state.data.user.email===''){
+        console.log('no')
+      }
+		}else if(currentStep===3){
+			// not 'select',int
+      if(this.state.data.user.email===''){
+        console.log('no')
+      }
+		}else if(currentStep==4){
+			// not 'select', handle other
+      if(this.state.data.user.email===''){
+        console.log('no')
+      }
+		}else{
+			// success
+  		console.log('success')
+		}
+
+    // let value = this.state.value;
+    // if (value === 'car') {
+    //   this.props.next(states.CAR);
+    // } else if (value === 'boat') {
+    //   this.props.next(states.BOAT);
+    // } else {
+    //   // this.setState({
+    //   //   errors: ['Please choose a vehicle type']
+    //   // });
+    // }
   },
 
   handleClick: function(e){
@@ -41,50 +87,48 @@ var Form = React.createClass({
       }else{
         currentStep = 1;
       }
-      this.setState({data: {...this.data, currentStep}});
+      this.setState({data: {...this.state.data, currentStep}});
 
 		}else if(e.target.value==='Next'){
+
+    	this.validate();
 
 			if(currentStep < 5){
         currentStep++;
 			}else{
         currentStep = 5;
 			}
-			this.setState({data: {...this.data, currentStep}});
+			this.setState({data: {...this.state.data, currentStep}});
 
 		}else{
 
 		}
   },
 
+	handleChange: function(e){
+    let obj={[e.target.id]:e.target.value};
+    let user={...this.state.data.user, ...obj};
+    this.setState({data: {...this.state.data, ...{user:user}}});
+	},
+
   render: function () {
   	let data=this.state.data;
+    console.log('render state',data);
 		return (
 			<div className="content form-wizard">
-				<h1>Step 1</h1>
+				<h1>Step {data.currentStep}</h1>
 
 				<form action="post">
+					<FormStep1 data={data} change={(e) => this.handleChange(e)} />
+					<FormStep2 data={data} change={(e) => this.handleChange(e)} />
+					<FormStep3 data={data} change={(e) => this.handleChange(e)} />
+					<FormStep4 data={data} change={(e) => this.handleChange(e)} />
+					<FormStep5 data={data} change={(e) => this.handleChange(e)} />
 
-					<FormStep1 data={data} afterValid={(e) => this.handleClick(e)} />
-					<FormStep2 data={data} afterValid={(e) => this.handleClick(e)} />
-					<FormStep3 data={data} afterValid={(e) => this.handleClick(e)} />
-					<FormStep4 data={data} afterValid={(e) => this.handleClick(e)} />
-					<FormStep5 data={data} afterValid={(e) => this.handleClick(e)} />
+					<input type="button" value="Prev" onClick={(e) => this.handleClick(e)} disabled={(data.currentStep > 1)? '':'disabled'} />
 
-          {
-            data.currentStep > 1
-              ? <input type="button" value="Prev" onClick={(e) => this.handleClick(e)} />
-              : null
-          }
-
-          {
-            data.currentStep < 5
-              ? <input type="button" value="Next" onClick={(e) => this.handleClick(e)} />
-              : null
-          }
-
+					<input type="button" value="Next" onClick={(e) => this.handleClick(e)} disabled={(data.currentStep < 5)? '':'disabled'} />
 				</form>
-
 			</div>
 		)
 	}

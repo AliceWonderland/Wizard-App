@@ -22,7 +22,7 @@ var FormStep4 = React.createClass({
           <option value="Other">Other</option>
         </select>
 
-        <input type="text" name="color" id="color" defaultValue="color" />
+        <input type="text" name="color" id="color" defaultValue="color" onChange={this.props.change} />
       </div>
     )
   }

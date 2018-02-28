@@ -21,10 +21,10 @@ var FormStep3 = React.createClass({
         </select>
 
         <label htmlFor="height">Height:</label>
-        <input type="text" name="feet" id="feet" /> <input type="text" name="inches" id="inches" />
+        <input type="text" name="feet" id="feet" /> <input type="text" name="inches" id="inches" onChange={this.props.change} />
 
         <label htmlFor="weight">Weight:</label>
-        <input type="text" name="weight" id="weight" />
+        <input type="text" name="weight" id="weight" onChange={this.props.change} />
       </div>
     )
   }

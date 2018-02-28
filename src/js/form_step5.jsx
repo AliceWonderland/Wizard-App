@@ -10,7 +10,7 @@ var FormStep5 = React.createClass({
     }
     return (
       <div>
-        <p>confirm or error</p>
+        <p>Success!</p>
       </div>
     )
   }

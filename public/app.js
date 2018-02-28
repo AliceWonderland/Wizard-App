@@ -108632,17 +108632,63 @@
 	        currentStep: 1,
 	        user: {
 	          id: 1,
-	          firstName: 'alice',
-	          lastName: 'chuang',
+	          firstName: 'First',
+	          lastName: 'Last',
 	          email: 'alice@gmail.com',
-	          age: 'alice',
+	          age: 32,
 	          heightFt: 5,
 	          heightIn: 4,
 	          weight: 150,
 	          color: 'red'
-	        }
+	        },
+	        errors: 0
 	      }
 			}
+	  },
+
+	  validate: function(){
+	    //use next btn to validate
+	    //do not validate on prev btn
+	    //using validator in base form to save time
+
+			let currentStep=this.state.currentStep;
+			let error=this.state.error;
+
+			if(currentStep===1){
+				// blank and str
+				if(this.state.data.user.firstName==='' || this.state.data.user.lastName===''){
+	        console.log('no')
+				}
+			}else if(currentStep===2){
+				// blank,@,dot
+	      if(this.state.data.user.email===''){
+	        console.log('no')
+	      }
+			}else if(currentStep===3){
+				// not 'select',int
+	      if(this.state.data.user.email===''){
+	        console.log('no')
+	      }
+			}else if(currentStep==4){
+				// not 'select', handle other
+	      if(this.state.data.user.email===''){
+	        console.log('no')
+	      }
+			}else{
+				// success
+	  		console.log('success')
+			}
+
+	    // let value = this.state.value;
+	    // if (value === 'car') {
+	    //   this.props.next(states.CAR);
+	    // } else if (value === 'boat') {
+	    //   this.props.next(states.BOAT);
+	    // } else {
+	    //   // this.setState({
+	    //   //   errors: ['Please choose a vehicle type']
+	    //   // });
+	    // }
 	  },
 
 	  handleClick: function(e){
@@ -108656,50 +108702,48 @@
 	      }else{
 	        currentStep = 1;
 	      }
-	      this.setState({data: Object.assign({},this.data, {currentStep:currentStep})});
+	      this.setState({data: Object.assign({},this.state.data, {currentStep:currentStep})});
 
 			}else if(e.target.value==='Next'){
+
+	    	this.validate();
 
 				if(currentStep < 5){
 	        currentStep++;
 				}else{
 	        currentStep = 5;
 				}
-				this.setState({data: Object.assign({},this.data, {currentStep:currentStep})});
+				this.setState({data: Object.assign({},this.state.data, {currentStep:currentStep})});
 
 			}else{
 
 			}
 	  },
 
+		handleChange: function(e){var $__0;
+	    let obj=($__0={},$__0[e.target.id]=e.target.value,$__0);
+	    let user=Object.assign({},this.state.data.user, obj);
+	    this.setState({data: Object.assign({},this.state.data, {user:user})});
+		},
+
 	  render: function () {
 	  	let data=this.state.data;
+	    console.log('render state',data);
 			return (
 				React.createElement("div", {className: "content form-wizard"}, 
-					React.createElement("h1", null, "Step 1"), 
+					React.createElement("h1", null, "Step ", data.currentStep), 
 
 					React.createElement("form", {action: "post"}, 
+						React.createElement(FormStep1, {data: data, change: function(e)  {return this.handleChange(e);}.bind(this)}), 
+						React.createElement(FormStep2, {data: data, change: function(e)  {return this.handleChange(e);}.bind(this)}), 
+						React.createElement(FormStep3, {data: data, change: function(e)  {return this.handleChange(e);}.bind(this)}), 
+						React.createElement(FormStep4, {data: data, change: function(e)  {return this.handleChange(e);}.bind(this)}), 
+						React.createElement(FormStep5, {data: data, change: function(e)  {return this.handleChange(e);}.bind(this)}), 
 
-						React.createElement(FormStep1, {data: data, afterValid: function(e)  {return this.handleClick(e);}.bind(this)}), 
-						React.createElement(FormStep2, {data: data, afterValid: function(e)  {return this.handleClick(e);}.bind(this)}), 
-						React.createElement(FormStep3, {data: data, afterValid: function(e)  {return this.handleClick(e);}.bind(this)}), 
-						React.createElement(FormStep4, {data: data, afterValid: function(e)  {return this.handleClick(e);}.bind(this)}), 
-						React.createElement(FormStep5, {data: data, afterValid: function(e)  {return this.handleClick(e);}.bind(this)}), 
+						React.createElement("input", {type: "button", value: "Prev", onClick: function(e)  {return this.handleClick(e);}.bind(this), disabled: (data.currentStep > 1)? '':'disabled'}), 
 
-	          
-	            data.currentStep > 1
-	              ? React.createElement("input", {type: "button", value: "Prev", onClick: function(e)  {return this.handleClick(e);}.bind(this)})
-	              : null, 
-	          
-
-	          
-	            data.currentStep < 5
-	              ? React.createElement("input", {type: "button", value: "Next", onClick: function(e)  {return this.handleClick(e);}.bind(this)})
-	              : null
-	          
-
+						React.createElement("input", {type: "button", value: "Next", onClick: function(e)  {return this.handleClick(e);}.bind(this), disabled: (data.currentStep < 5)? '':'disabled'})
 					)
-
 				)
 			)
 		}
@@ -108724,21 +108768,9 @@
 	var React = __webpack_require__(2);
 
 	var FormStep1 = React.createClass({displayName: "FormStep1",
-	  validate: function(){
-	    //validate in here
-	    //use next btn to validate?
-	    //do not validate on prev btn
-
-	    e.preventDefault();
-	    let value = this.state.value;
-	    if (value === 'car') {
-	      this.props.next(states.CAR);
-	    } else if (value === 'boat') {
-	      this.props.next(states.BOAT);
-	    } else {
-	      // this.setState({
-	      //   errors: ['Please choose a vehicle type']
-	      // });
+	  getInitialState: function(){
+	    return {
+	      data: this.props.data
 	    }
 	  },
 	  render: function () {
@@ -108748,10 +108780,10 @@
 	    return (
 	      React.createElement("div", null, 
 	          React.createElement("label", {htmlFor: "firstname"}, "First Name:"), 
-	          React.createElement("input", {type: "text", name: "firstname", id: "firstname", defaultValue: "First"}), 
+	          React.createElement("input", {type: "text", name: "firstName", id: "firstName", defaultValue: "First", onChange: this.props.change}), 
 
 	          React.createElement("label", {htmlFor: "lastname"}, "Last Name:"), 
-	          React.createElement("input", {type: "text", name: "lastname", id: "lastname", defaultValue: "Last"})
+	          React.createElement("input", {type: "text", name: "lastName", id: "lastName", defaultValue: "Last", onChange: this.props.change})
 	      )
 	    )
 	  }
@@ -108770,7 +108802,11 @@
 	var React = __webpack_require__(2);
 
 	var FormStep2 = React.createClass({displayName: "FormStep2",
-
+	  getInitialState: function(){
+	    return {
+	      data: this.props.data
+	    }
+	  },
 	  render: function () {
 	    if (this.props.data.currentStep !== 2) {
 	      return null;
@@ -108778,7 +108814,7 @@
 	    return (
 	      React.createElement("div", null, 
 	        React.createElement("label", {htmlFor: "email"}, "Email:"), 
-	        React.createElement("input", {type: "text", name: "email", id: "email", defaultValue: "me@gmail.com"})
+	        React.createElement("input", {type: "text", name: "email", id: "email", defaultValue: "me@gmail.com", onChange: this.props.change})
 	      )
 	    )
 	  }
@@ -108814,10 +108850,10 @@
 	        ), 
 
 	        React.createElement("label", {htmlFor: "height"}, "Height:"), 
-	        React.createElement("input", {type: "text", name: "feet", id: "feet"}), " ", React.createElement("input", {type: "text", name: "inches", id: "inches"}), 
+	        React.createElement("input", {type: "text", name: "feet", id: "feet"}), " ", React.createElement("input", {type: "text", name: "inches", id: "inches", onChange: this.props.change}), 
 
 	        React.createElement("label", {htmlFor: "weight"}, "Weight:"), 
-	        React.createElement("input", {type: "text", name: "weight", id: "weight"})
+	        React.createElement("input", {type: "text", name: "weight", id: "weight", onChange: this.props.change})
 	      )
 	    )
 	  }
@@ -108854,7 +108890,7 @@
 	          React.createElement("option", {value: "Other"}, "Other")
 	        ), 
 
-	        React.createElement("input", {type: "text", name: "color", id: "color", defaultValue: "color"})
+	        React.createElement("input", {type: "text", name: "color", id: "color", defaultValue: "color", onChange: this.props.change})
 	      )
 	    )
 	  }
@@ -108879,7 +108915,7 @@
 	    }
 	    return (
 	      React.createElement("div", null, 
-	        React.createElement("p", null, "confirm or error")
+	        React.createElement("p", null, "Success!")
 	      )
 	    )
 	  }

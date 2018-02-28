@@ -3,7 +3,11 @@
 var React = require('react');
 
 var FormStep2 = React.createClass({
-
+  getInitialState: function(){
+    return {
+      data: this.props.data
+    }
+  },
   render: function () {
     if (this.props.data.currentStep !== 2) {
       return null;
@@ -11,7 +15,7 @@ var FormStep2 = React.createClass({
     return (
       <div>
         <label htmlFor="email">Email:</label>
-        <input type="text" name="email" id="email" defaultValue="me@gmail.com" />
+        <input type="text" name="email" id="email" defaultValue="me@gmail.com" onChange={this.props.change} />
       </div>
     )
   }

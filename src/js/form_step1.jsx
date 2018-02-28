@@ -3,21 +3,9 @@
 var React = require('react');
 
 var FormStep1 = React.createClass({
-  validate: function(){
-    //validate in here
-    //use next btn to validate?
-    //do not validate on prev btn
-
-    e.preventDefault();
-    let value = this.state.value;
-    if (value === 'car') {
-      this.props.next(states.CAR);
-    } else if (value === 'boat') {
-      this.props.next(states.BOAT);
-    } else {
-      // this.setState({
-      //   errors: ['Please choose a vehicle type']
-      // });
+  getInitialState: function(){
+    return {
+      data: this.props.data
     }
   },
   render: function () {
@@ -27,10 +15,10 @@ var FormStep1 = React.createClass({
     return (
       <div>
           <label htmlFor="firstname">First Name:</label>
-          <input type="text" name="firstname" id="firstname" defaultValue="First" />
+          <input type="text" name="firstName" id="firstName" defaultValue="First" onChange={this.props.change} />
 
           <label htmlFor="lastname">Last Name:</label>
-          <input type="text" name="lastname" id="lastname" defaultValue="Last" />
+          <input type="text" name="lastName" id="lastName" defaultValue="Last" onChange={this.props.change} />
       </div>
     )
   }
